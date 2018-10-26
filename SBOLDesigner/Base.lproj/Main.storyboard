@@ -1,24 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad12_9" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Logo Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LogoPage" customModule="SBOLDesigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SBOLDeisgner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSp-Yi-r2t">
+                                <rect key="frame" x="234" y="433" width="899" height="158"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="78"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fSp-Yi-r2t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="234" id="3nA-GN-qWt"/>
+                            <constraint firstItem="fSp-Yi-r2t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="413" id="C5G-Al-ErX"/>
+                            <constraint firstItem="fSp-Yi-r2t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FW5-Eq-41z"/>
+                            <constraint firstItem="fSp-Yi-r2t" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="uK8-2D-Hzq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="I5X-2g-jxj" kind="show" identifier="toCanvas" id="y4r-JM-U1D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="14.934114202049779" y="17.578125"/>
+        </scene>
+        <!--Canvas View Controller-->
+        <scene sceneID="2Y3-Pj-e8h">
+            <objects>
+                <viewController id="I5X-2g-jxj" customClass="CanvasViewController" customModule="SBOLDesigner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MgS-Xo-92S">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHR-Tm-jgm" customClass="PartScrollView" customModule="SBOLDesigner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="896" width="1366" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMN-Dt-GVC">
+                                        <rect key="frame" x="8" y="12" width="56" height="104"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="cds"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7J-BZ-Agu">
+                                        <rect key="frame" x="72" y="12" width="56" height="104"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="cds"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fj-cT-d8M">
+                                        <rect key="frame" x="136" y="12" width="56" height="104"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="cds"/>
+                                    </button>
+                                </subviews>
+                                <connections>
+                                    <outlet property="CDS" destination="aMN-Dt-GVC" id="ezN-uc-d2z"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pHR-Tm-jgm" secondAttribute="trailing" id="1Gf-Fe-ogt"/>
+                            <constraint firstItem="pHR-Tm-jgm" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" constant="876" id="5uU-9d-4kU"/>
+                            <constraint firstItem="pHR-Tm-jgm" firstAttribute="bottom" secondItem="MgS-Xo-92S" secondAttribute="bottom" id="IKU-zt-QcG"/>
+                            <constraint firstItem="pHR-Tm-jgm" firstAttribute="leading" secondItem="MgS-Xo-92S" secondAttribute="leading" id="cT7-Wz-EO3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="B60-i0-RSX"/>
+                    </view>
+                    <connections>
+                        <outlet property="PartScrollView" destination="pHR-Tm-jgm" id="5fW-Y7-1lY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOg-VE-dcE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="663.6896046852122" y="17.578125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cds" width="52" height="104"/>
+    </resources>
 </document>
