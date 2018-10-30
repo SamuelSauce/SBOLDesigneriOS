@@ -9,24 +9,80 @@
 import UIKit
 
 class CanvasViewController: UIViewController {
-    @IBOutlet weak var PartScrollView: PartScrollView!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.PartScrollView.setupScrollView()
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var PartScrollView: PartScrollView!
+    @IBOutlet weak var FirstImage: UIImageView!
+    
+    @IBAction func CDS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.CDS.imageView?.image)!)
     }
-    */
+    @IBAction func Gen(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Gen.imageView?.image)!)
+    }
+    @IBAction func RBS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.RBS.imageView?.image)!)
+    }
+    @IBAction func Pro(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Pro.imageView?.image)!)
+    }
+    @IBAction func Ter(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Ter.imageView?.image)!)
+    }
+    @IBAction func gRNA(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.gRNA.imageView?.image)!)
+    }
+    @IBAction func Ori(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Ori.imageView?.image)!)
+    }
+    @IBAction func OriT(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.OriT.imageView?.image)!)
+    }
+    @IBAction func PBS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.PBS.imageView?.image)!)
+    }
+    @IBAction func SR5(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.SR5.imageView?.image)!)
+    }
+    @IBAction func SR3(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.SR3.imageView?.image)!)
+    }
+    @IBAction func Scar(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Scar.imageView?.image)!)
+    }
+    @IBAction func Op(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Op.imageView?.image)!)
+    }
+    @IBAction func BRS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.BRS.imageView?.image)!)
+    }
+    @IBAction func OH5(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.OH5.imageView?.image)!)
+    }
+    @IBAction func OH3(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.OH3.imageView?.image)!)
+    }
+    @IBAction func PolyA(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.PolyA.imageView?.image)!)
+    }
+    @IBAction func SRS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.SRS.imageView?.image)!)
+    }
+    @IBAction func NGA(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.NGA.imageView?.image)!)
+    }
+    @IBAction func Sig(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.Sig.imageView?.image)!)
+    }
+    @IBAction func BS(_ sender: Any) {
+        AddPart(part: (self.PartScrollView.BS.imageView?.image)!)
+    }
+    
+    func AddPart(part: UIImage){
+        FirstImage.image = part
+    }
 
 }
