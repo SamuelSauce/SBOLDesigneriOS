@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SBOLDesigner/DrawView.swift"
-            timestampString = "563148135.1319391"
+            timestampString = "563148775.160604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "clearCanvas()"
             landmarkType = "7">
          </BreakpointContent>

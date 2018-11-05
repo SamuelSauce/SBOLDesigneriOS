@@ -24,12 +24,17 @@ class DrawView: UIView{
         clearCanvas()
     }
     
-    override func layoutSubviews() {
-        self.clipsToBounds = true
-        self.isMultipleTouchEnabled = false
+    func setupView(){
+        clearButton.layer.cornerRadius = clearButton.frame.size.width/8
+        clearButton.clipsToBounds = true
         self.clearButton.backgroundColor = UIColor.red
         lineColor = UIColor.black
         lineWidth = 5
+    }
+    
+    override func layoutSubviews() {
+        self.clipsToBounds = true
+        self.isMultipleTouchEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

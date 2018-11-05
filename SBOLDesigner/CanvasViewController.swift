@@ -15,6 +15,7 @@ class CanvasViewController: UIViewController {
         currentlySelected = PartScrollView.CDS
         currentlySelected.backgroundColor = UIColor.blue
         self.DrawView.setCurrentGlyph(image: (self.PartScrollView.CDS.imageView?.image)!)
+        self.DrawView.setupView()
     }
     
     @IBOutlet weak var PartScrollView: PartScrollView!
