@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680163B92190CBEF008C624D /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680163B82190CBEF008C624D /* DrawView.swift */; };
 		68092C4E2182B1FD00DAEA85 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68092C4D2182B1FD00DAEA85 /* CanvasViewController.swift */; };
 		68092C522182B59700DAEA85 /* PartScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68092C512182B59700DAEA85 /* PartScrollView.swift */; };
 		682C25FE218104CD00DAB50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C25FD218104CD00DAB50F /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		680163B82190CBEF008C624D /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		68092C4D2182B1FD00DAEA85 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		68092C512182B59700DAEA85 /* PartScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PartScrollView.swift; path = ../PartScrollView.swift; sourceTree = "<group>"; };
 		682C25FA218104CD00DAB50F /* SBOLDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBOLDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,7 @@
 				682C25FD218104CD00DAB50F /* AppDelegate.swift */,
 				682C25FF218104CD00DAB50F /* LogoPage.swift */,
 				68092C4D2182B1FD00DAEA85 /* CanvasViewController.swift */,
+				680163B82190CBEF008C624D /* DrawView.swift */,
 				68092C512182B59700DAEA85 /* PartScrollView.swift */,
 				682C2601218104CD00DAB50F /* Main.storyboard */,
 				682C2604218104CF00DAB50F /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68092C522182B59700DAEA85 /* PartScrollView.swift in Sources */,
+				680163B92190CBEF008C624D /* DrawView.swift in Sources */,
 				682C2600218104CD00DAB50F /* LogoPage.swift in Sources */,
 				68092C4E2182B1FD00DAEA85 /* CanvasViewController.swift in Sources */,
 				682C25FE218104CD00DAB50F /* AppDelegate.swift in Sources */,
