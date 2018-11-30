@@ -246,13 +246,6 @@
                                     <outlet property="gRNA" destination="as8-8Q-jCW" id="XXB-GV-trb"/>
                                 </connections>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Lxo-8Z-SmZ">
-                                <rect key="frame" x="1143" y="20" width="203" height="29"/>
-                                <segments>
-                                    <segment title="Glyph"/>
-                                    <segment title="Draw"/>
-                                </segments>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCp-9F-Z0m">
                                 <rect key="frame" x="20" y="20" width="82" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -263,6 +256,46 @@
                                     <action selector="clearClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="Ft2-e8-lN4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJG-IX-NbL">
+                                <rect key="frame" x="1300" y="86" width="44" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="undo"/>
+                                <connections>
+                                    <action selector="undoButton:" destination="MgS-Xo-92S" eventType="touchUpInside" id="qCP-Tr-VMP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYq-U9-gyV">
+                                <rect key="frame" x="1300" y="163" width="46" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="eraser"/>
+                                <connections>
+                                    <action selector="eraserClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="NaJ-0H-Ccw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-aF-XlT">
+                                <rect key="frame" x="1300" y="240" width="46" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Pencil" image="pencil"/>
+                                <connections>
+                                    <action selector="pencilClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="rHh-Wb-ecW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLz-7P-8dZ">
+                                <rect key="frame" x="1301" y="302" width="43" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Strand" image="dna"/>
+                                <connections>
+                                    <action selector="strandClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="ltB-4x-dc9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3D2-D2-fpx">
+                                <rect key="frame" x="1287" y="369" width="57" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="hand"/>
+                                <connections>
+                                    <action selector="handClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="1Li-QN-uhv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -270,13 +303,15 @@
                             <constraint firstItem="pHR-Tm-jgm" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" constant="876" id="5uU-9d-4kU"/>
                             <constraint firstItem="pHR-Tm-jgm" firstAttribute="bottom" secondItem="MgS-Xo-92S" secondAttribute="bottom" id="IKU-zt-QcG"/>
                             <constraint firstItem="pHR-Tm-jgm" firstAttribute="leading" secondItem="MgS-Xo-92S" secondAttribute="leading" id="cT7-Wz-EO3"/>
-                            <constraint firstItem="Lxo-8Z-SmZ" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" id="gkE-ZP-wFT"/>
-                            <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="Lxo-8Z-SmZ" secondAttribute="trailing" constant="20" id="yIs-Yk-CxJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B60-i0-RSX"/>
                         <connections>
                             <outlet property="clearButton" destination="sCp-9F-Z0m" id="TZK-8A-uYO"/>
-                            <outlet property="drawOrGlyph" destination="Lxo-8Z-SmZ" id="rgW-sz-aJd"/>
+                            <outlet property="eraserButton" destination="UYq-U9-gyV" id="p5W-fR-IQU"/>
+                            <outlet property="handButton" destination="3D2-D2-fpx" id="rVN-pq-S8G"/>
+                            <outlet property="pencilButton" destination="q4s-aF-XlT" id="Qz3-Z9-Uvh"/>
+                            <outlet property="strandButton" destination="uLz-7P-8dZ" id="Lhl-1O-OmM"/>
+                            <outlet property="undoButton" destination="TJG-IX-NbL" id="FAb-A0-Nxy"/>
                         </connections>
                     </view>
                     <connections>
@@ -297,14 +332,18 @@
         <image name="cds" width="52" height="104"/>
         <image name="cut" width="52" height="104"/>
         <image name="cut2" width="52" height="104"/>
+        <image name="dna" width="36" height="59"/>
         <image name="engineered-region" width="52" height="104"/>
+        <image name="eraser" width="36" height="35"/>
         <image name="five-prime-overhang" width="52" height="104"/>
         <image name="gRNA" width="52" height="104"/>
+        <image name="hand" width="72" height="72"/>
         <image name="no-glyph-assigned" width="104" height="208"/>
         <image name="operator" width="52" height="104"/>
         <image name="ori" width="52" height="104"/>
         <image name="oriT" width="52" height="104"/>
         <image name="pbs" width="52" height="104"/>
+        <image name="pencil" width="43" height="43"/>
         <image name="poly-a-site" width="52" height="104"/>
         <image name="promoter" width="52" height="104"/>
         <image name="rbs" width="52" height="104"/>
@@ -312,5 +351,6 @@
         <image name="specific-recombination-site" width="52" height="104"/>
         <image name="terminator" width="52" height="104"/>
         <image name="three-prime-overhang" width="52" height="104"/>
+        <image name="undo" width="512" height="512"/>
     </resources>
 </document>

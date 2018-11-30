@@ -15,6 +15,8 @@
 		682C2603218104CD00DAB50F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682C2601218104CD00DAB50F /* Main.storyboard */; };
 		682C2605218104CF00DAB50F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682C2604218104CF00DAB50F /* Assets.xcassets */; };
 		682C2608218104CF00DAB50F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682C2606218104CF00DAB50F /* LaunchScreen.storyboard */; };
+		6888DDB921B1DD900032A774 /* GlyphImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888DDB821B1DD900032A774 /* GlyphImageView.swift */; };
+		68FB64A321A620F100FC56B2 /* strand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FB64A221A620F100FC56B2 /* strand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		682C2604218104CF00DAB50F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		682C2607218104CF00DAB50F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		682C2609218104CF00DAB50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6888DDB821B1DD900032A774 /* GlyphImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphImageView.swift; sourceTree = "<group>"; };
+		68FB64A221A620F100FC56B2 /* strand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = strand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,10 @@
 				682C25FD218104CD00DAB50F /* AppDelegate.swift */,
 				682C25FF218104CD00DAB50F /* LogoPage.swift */,
 				68092C4D2182B1FD00DAEA85 /* CanvasViewController.swift */,
-				680163B82190CBEF008C624D /* DrawView.swift */,
 				68092C512182B59700DAEA85 /* PartScrollView.swift */,
+				68FB64A221A620F100FC56B2 /* strand.swift */,
+				680163B82190CBEF008C624D /* DrawView.swift */,
+				6888DDB821B1DD900032A774 /* GlyphImageView.swift */,
 				682C2601218104CD00DAB50F /* Main.storyboard */,
 				682C2604218104CF00DAB50F /* Assets.xcassets */,
 				682C2606218104CF00DAB50F /* LaunchScreen.storyboard */,
@@ -147,6 +153,8 @@
 				68092C522182B59700DAEA85 /* PartScrollView.swift in Sources */,
 				680163B92190CBEF008C624D /* DrawView.swift in Sources */,
 				682C2600218104CD00DAB50F /* LogoPage.swift in Sources */,
+				68FB64A321A620F100FC56B2 /* strand.swift in Sources */,
+				6888DDB921B1DD900032A774 /* GlyphImageView.swift in Sources */,
 				68092C4E2182B1FD00DAEA85 /* CanvasViewController.swift in Sources */,
 				682C25FE218104CD00DAB50F /* AppDelegate.swift in Sources */,
 			);
