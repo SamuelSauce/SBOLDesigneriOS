@@ -21,9 +21,108 @@ class DrawView: UIView{
     var drawingStrand: Bool!
     var strandStarted: Bool!
     var handSelected: Bool!
+    var textSelected: Bool!
     var undoStack: [Int]!
     var currentlySelectedStrand: strand!
     var strands: [strand]!
+    @IBOutlet weak var red: UIButton!
+    @IBOutlet weak var yellow: UIButton!
+    @IBOutlet weak var blue: UIButton!
+    @IBOutlet weak var green: UIButton!
+    @IBOutlet weak var purple: UIButton!
+    @IBAction func redClicked(_ sender: Any) {
+        lineColor = UIColor.red
+        unHighlight()
+        red.layer.borderWidth = 4
+    }
+    @IBAction func yellowClicked(_ sender: Any) {
+        lineColor = UIColor.yellow
+        unHighlight()
+        yellow.layer.borderWidth = 4
+    }
+    @IBAction func blueClicked(_ sender: Any) {
+        lineColor = UIColor.blue
+        unHighlight()
+        blue.layer.borderWidth = 4
+    }
+    @IBAction func greenClicked(_ sender: Any) {
+        lineColor = UIColor.green
+        unHighlight()
+        green.layer.borderWidth = 4
+    }
+    @IBAction func purpleClicked(_ sender: Any) {
+        lineColor = UIColor.purple
+        unHighlight()
+        purple.layer.borderWidth = 4
+    }
+    
+    private func unHighlight(){
+        red.layer.borderWidth = 0
+        blue.layer.borderWidth = 0
+        yellow.layer.borderWidth = 0
+        green.layer.borderWidth = 0
+        purple.layer.borderWidth = 0
+        red.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    private func turnOffColors(){
+        red.isHidden = true
+        yellow.isHidden = true
+        blue.isHidden = true
+        green.isHidden = true
+        purple.isHidden = true
+    }
+    
+    private func turnOnColors(){
+        red.isHidden = false
+        yellow.isHidden = false
+        blue.isHidden = false
+        green.isHidden = false
+        purple.isHidden = false
+    }
+
+    private func setupColorButtons(){
+        roundButton(roundness: 2, button: self.red)
+        roundButton(roundness: 2, button: self.yellow)
+        roundButton(roundness: 2, button: self.blue)
+        roundButton(roundness: 2, button: self.green)
+        roundButton(roundness: 2, button: self.purple)
+        red.backgroundColor = UIColor.red
+        yellow.backgroundColor = UIColor.yellow
+        blue.backgroundColor = UIColor.blue
+        green.backgroundColor = UIColor.green
+        purple.backgroundColor = UIColor.purple
+        red.layer.borderColor = UIColor.black.cgColor
+        yellow.layer.borderColor = UIColor.black.cgColor
+        blue.layer.borderColor = UIColor.black.cgColor
+        green.layer.borderColor = UIColor.black.cgColor
+        purple.layer.borderColor = UIColor.black.cgColor
+        unHighlight()
+        turnOnColors()
+    }
+    
+    private func roundButton(roundness: Int, button: UIButton){
+        button.layer.cornerRadius = button.frame.size.width/CGFloat(roundness)
+        button.clipsToBounds = true
+    }
+    @IBOutlet weak var textButton: UIButton!
+    @IBAction func textClicked(_ sender: Any) {
+        pencilButton.setImage(UIImage(named: "pencil"), for: .normal)
+        strandButton.setImage(UIImage(named: "dna"), for: .normal)
+        eraserButton.setImage(UIImage(named: "eraser"), for: .normal)
+        handButton.setImage(UIImage(named: "hand"), for: .normal)
+        textButton.setImage(UIImage(named: "textColor"), for: .normal)
+        lineColor = UIColor.black
+        lineWidth = 5
+        drawingStrand = false
+        strandStarted = false
+        pencilSelected = false
+        handSelected = false
+        textSelected = true
+        turnOffColors()
+        turnOffStrands()
+    }
+    
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var eraserButton: UIButton!
     @IBAction func eraserClicked(_ sender: Any) {
@@ -31,11 +130,14 @@ class DrawView: UIView{
         strandButton.setImage(UIImage(named: "dna"), for: .normal)
         eraserButton.setImage(UIImage(named: "eraserColor"), for: .normal)
         handButton.setImage(UIImage(named: "hand"), for: .normal)
+        textButton.setImage(UIImage(named: "text"), for: .normal)
+        textSelected = false
         lineColor = UIColor.white
         lineWidth = 20
         drawingStrand = false
         pencilSelected = false
         handSelected = false
+        turnOffColors()
         turnOffStrands()
     }
     @IBOutlet weak var handButton: UIButton!
@@ -44,9 +146,12 @@ class DrawView: UIView{
         strandButton.setImage(UIImage(named: "dna"), for: .normal)
         eraserButton.setImage(UIImage(named: "eraser"), for: .normal)
         handButton.setImage(UIImage(named: "handColor"), for: .normal)
+        textButton.setImage(UIImage(named: "text"), for: .normal)
+        textSelected = false
         drawingStrand = false
         strandStarted = false
         pencilSelected = false
+        turnOffColors()
         handSelected = true
         turnOnStrands()
     }
@@ -57,12 +162,16 @@ class DrawView: UIView{
         strandButton.setImage(UIImage(named: "dna"), for: .normal)
         eraserButton.setImage(UIImage(named: "eraser"), for: .normal)
         handButton.setImage(UIImage(named: "hand"), for: .normal)
+        textButton.setImage(UIImage(named: "text"), for: .normal)
+        textSelected = false
         lineColor = UIColor.black
         lineWidth = 5
         drawingStrand = false
         strandStarted = false
         handSelected = false
         pencilSelected = true
+        turnOnColors()
+        unHighlight()
         turnOffStrands()
     }
     
@@ -108,11 +217,14 @@ class DrawView: UIView{
         strandButton.setImage(UIImage(named: "dnaColor"), for: .normal)
         eraserButton.setImage(UIImage(named: "eraser"), for: .normal)
         handButton.setImage(UIImage(named: "hand"), for: .normal)
+        textButton.setImage(UIImage(named: "text"), for: .normal)
+        textSelected = false
         lineColor = UIColor.black
         lineWidth = 5
         drawingStrand = true
         handSelected = false
         pencilSelected = false
+        turnOffColors()
         turnOffStrands()
     }
     
@@ -136,8 +248,7 @@ class DrawView: UIView{
         }
     }
     func setupView(){
-        clearButton.layer.cornerRadius = clearButton.frame.size.width/8
-        clearButton.clipsToBounds = true
+        roundButton(roundness: 8, button: clearButton)
         self.clearButton.backgroundColor = UIColor.red
         lineColor = UIColor.black
         lineWidth = 5
@@ -147,6 +258,7 @@ class DrawView: UIView{
         drawingStrand = false
         handSelected = false
         pencilSelected = true
+        setupColorButtons()
     }
     
     override func layoutSubviews() {
@@ -157,9 +269,14 @@ class DrawView: UIView{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         startingPoint = touch?.location(in: self)
-        if handSelected == true{
+        if handSelected == true && currentlySelectedStrand != nil{
             currentlySelectedStrand.layer.borderWidth = 0
             self.currentlySelectedStrand = nil
+        }else if textSelected == true{
+            let textField = UITextField()
+            textField.frame = CGRect(x: startingPoint.x, y: startingPoint.y - 10/2, width: 100, height: 30)
+            self.addSubview(textField)
+            textField.select(self)
         }
     }
     
@@ -190,7 +307,9 @@ class DrawView: UIView{
                 startingPoint = touchPoint
             }
         }
-        drawShapeLayer()
+        if textSelected == false && handSelected == false{
+            drawShapeLayer()
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -272,7 +391,9 @@ class DrawView: UIView{
     
     func changeCurrent(strand: strand){
         if handSelected{
-            currentlySelectedStrand.layer.borderWidth = 0
+            if currentlySelectedStrand != nil{
+                currentlySelectedStrand.layer.borderWidth = 0
+            }
             currentlySelectedStrand = strand
             currentlySelectedStrand.layer.borderWidth = 2
             currentlySelectedStrand.layer.borderColor = UIColor.cyan.cgColor
