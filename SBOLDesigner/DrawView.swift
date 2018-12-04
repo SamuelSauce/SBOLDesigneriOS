@@ -207,8 +207,12 @@ class DrawView: UIView{
                 return
             }
         }
-        else{
-            //do nothing??
+        else if popped == 3{
+            if let textBox = self.subviews.last as? UITextField{
+                textBox.removeFromSuperview()
+                self.setNeedsDisplay()
+                return
+            }
         }
     }
     @IBOutlet weak var strandButton: UIButton!
@@ -274,8 +278,9 @@ class DrawView: UIView{
             self.currentlySelectedStrand = nil
         }else if textSelected == true{
             let textField = UITextField()
-            textField.frame = CGRect(x: startingPoint.x, y: startingPoint.y - 10/2, width: 100, height: 30)
+            textField.frame = CGRect(x: startingPoint.x, y: startingPoint.y - 10/2, width: 200, height: 30)
             self.addSubview(textField)
+            undoStack.append(3)
             textField.select(self)
         }
     }
@@ -353,6 +358,8 @@ class DrawView: UIView{
     func clearCanvas(){
         for view in self.subviews{
             if let imageView = view as? UIImageView{
+                imageView.removeFromSuperview()
+            }else if let imageView = view as? UITextField{
                 imageView.removeFromSuperview()
             }
         }
