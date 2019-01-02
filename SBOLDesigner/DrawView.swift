@@ -12,7 +12,7 @@ import UIKit
 class DrawView: UIView{
     var lineColor: UIColor!
     var lineWidth: CGFloat!
-    var path:UIBezierPath!
+    var path: UIBezierPath!
     var touchPoint: CGPoint!
     var startingPoint: CGPoint!
     var currentGlyph: UIImage!
@@ -23,8 +23,8 @@ class DrawView: UIView{
     var handSelected: Bool!
     var textSelected: Bool!
     var undoStack: [Int]!
-    var currentlySelectedStrand: strand!
-    var strands: [strand]!
+    var currentlySelectedStrand: Strand!
+    var strands: [Strand]!
     @IBOutlet weak var red: UIButton!
     @IBOutlet weak var yellow: UIButton!
     @IBOutlet weak var blue: UIButton!
@@ -181,12 +181,9 @@ class DrawView: UIView{
         let popped = pop()
         //Case if deleting a strand
         if popped == 0{
-            if let imageView = self.subviews.last as? strand{
-                imageView.removeFromSuperview()
-                currentlySelectedStrand = nil
-                self.setNeedsDisplay()
-                return
-            }
+            strands.popLast()?.deleteStrand()
+            currentlySelectedStrand = nil
+            return
         //Case if deleting a drawn layer
         }else if popped == 1{
             var count = 1
@@ -202,11 +199,12 @@ class DrawView: UIView{
         else if popped == 2{
             if let imageView = self.subviews.last as? GlyphImageView{
                 imageView.parentStrand?.deleteSlot()
+                imageView.parentStrand?.deletePart(part: imageView)
                 imageView.removeFromSuperview()
                 self.setNeedsDisplay()
                 return
             }
-        }
+        }//Case if deleting a text box.
         else if popped == 3{
             if let textBox = self.subviews.last as? UITextField{
                 textBox.removeFromSuperview()
@@ -237,20 +235,21 @@ class DrawView: UIView{
     }
     
     func turnOffStrands(){
-        if strands != nil{
-            for strand in strands!{
-                strand.isUserInteractionEnabled = false
-            }
-        }
+//        if strands != nil{
+//            for strand in strands!{
+//                //Strand.isUserInteractionEnabled = false
+//            }
+//        }
     }
     
     func turnOnStrands(){
-        if strands != nil{
-            for strand in strands!{
-                strand.isUserInteractionEnabled = true
-            }
-        }
+//        if strands != nil{
+//            for strand in strands!{
+//                //strand.isUserInteractionEnabled = true
+//            }
+//        }
     }
+    
     func setupView(){
         roundButton(roundness: 8, button: clearButton)
         self.clearButton.backgroundColor = UIColor.red
@@ -258,7 +257,7 @@ class DrawView: UIView{
         lineWidth = 5
         pencilButton.setImage(UIImage(named: "pencilColor"), for: .normal)
         undoStack = [-1]
-        strands = [strand]()
+        strands = [Strand]()
         drawingStrand = false
         handSelected = false
         pencilSelected = true
@@ -274,7 +273,8 @@ class DrawView: UIView{
         let touch = touches.first
         startingPoint = touch?.location(in: self)
         if handSelected == true && currentlySelectedStrand != nil{
-            currentlySelectedStrand.layer.borderWidth = 0
+            //TODO:
+            //currentlySelectedStrand.layer.borderWidth = 0
             self.currentlySelectedStrand = nil
         }else if textSelected == true{
             let textField = UITextField()
@@ -282,22 +282,29 @@ class DrawView: UIView{
             self.addSubview(textField)
             undoStack.append(3)
             textField.select(self)
+        }else if drawingStrand == true{
+            var foundStrand = false
+            for strand in strands{
+                if strand.frame.contains(startingPoint){
+                    currentlySelectedStrand = strand
+                    foundStrand = true
+                    strand.enabled(isOn: true)
+                }else{
+                    strand.enabled(isOn: false)
+                }
+            }
+            if !foundStrand{
+                let strand = Strand(superView: self, x: startingPoint.x, y: startingPoint.y - 128/2)
+                self.currentlySelectedStrand = strand
+                self.strands.append(strand)
+                strandStarted = false
+                undoStack.append(0)
+            }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //This piece of code erases the last 'ghost' drawing of what the DNA strand will look like.
-        if drawingStrand == true{
-            if strandStarted == true{
-                if(layersToRemove > 0){
-                    path.removeAllPoints()
-                    self.layer.sublayers?.remove(at: (self.layer.sublayers?.count)! - 1)
-                    layersToRemove -= 1
-                }
-            }
-            strandStarted = true
-        }
-        if handSelected == false{
+        if handSelected == false && drawingStrand == false && textSelected == false{
             let touch = touches.first
             touchPoint = touch?.location(in: self)
             
@@ -311,37 +318,13 @@ class DrawView: UIView{
                 undoStack.append(1)
                 startingPoint = touchPoint
             }
-        }
-        if textSelected == false && handSelected == false{
             drawShapeLayer()
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if drawingStrand == true && strandStarted == true{
-            var count = 1
-            if(layersToRemove > 0){
-                path.removeAllPoints()
-                while count > 0{
-                    self.layer.sublayers?.remove(at: (self.layer.sublayers?.count)! - 1)
-                    count -= 1
-                    layersToRemove -= 1
-                }
-            }
-            if currentlySelectedStrand != nil{
-                currentlySelectedStrand.layer.borderWidth = 0
-            }
-            let imageView = strand(image: UIImage(named: "line"))
-            imageView.layer.borderWidth = 2
-            imageView.layer.borderColor = UIColor.cyan.cgColor
-            imageView.setSuperView(superView: self)
-            imageView.frame = CGRect(x: startingPoint.x, y: startingPoint.y - 128/2, width: abs(touchPoint.x-startingPoint.x), height: 128)
-            self.addSubview(imageView)
-            self.currentlySelectedStrand = imageView
-            self.strands.append(imageView)
-            drawShapeLayer()
-            strandStarted = false
-            undoStack.append(0)
+        if currentlySelectedStrand != nil{
+            // currentlySelectedStrand.layer.borderWidth = 0
         }
     }
     func drawShapeLayer(){
@@ -364,12 +347,15 @@ class DrawView: UIView{
             }
         }
         if(layersToRemove > 0){
-            path.removeAllPoints()
             while layersToRemove > 0{
                 self.layer.sublayers?.remove(at: (self.layer.sublayers?.count)! - 1)
                 layersToRemove -= 1
             }
         }
+        for strand in self.strands{
+            strand.deleteStrand()
+        }
+        strands = [Strand]()
         undoStack.removeAll()
         undoStack.append(-1)
         self.setNeedsDisplay()
@@ -380,10 +366,10 @@ class DrawView: UIView{
         if self.currentlySelectedStrand != nil{
             let nextSlot = self.currentlySelectedStrand.getNextSlot()
             if nextSlot.x != -1{
-                let imageView = GlyphImageView(strand: currentlySelectedStrand, image: self.currentGlyph)
-                imageView.frame = CGRect(x: nextSlot.x, y: nextSlot.y, width: 73, height: 128)
+                let newPart = GlyphImageView(strand: currentlySelectedStrand, image: self.currentGlyph)
+                newPart.frame = CGRect(x: nextSlot.x, y: nextSlot.y, width: 73, height: 128)
+                newPart.parentStrand?.addPart(part: newPart)
                 undoStack.append(2)
-                self.addSubview(imageView)
             }
         }
     }
@@ -395,15 +381,15 @@ class DrawView: UIView{
             return -1
         }
     }
-    
-    func changeCurrent(strand: strand){
-        if handSelected{
-            if currentlySelectedStrand != nil{
-                currentlySelectedStrand.layer.borderWidth = 0
-            }
-            currentlySelectedStrand = strand
-            currentlySelectedStrand.layer.borderWidth = 2
-            currentlySelectedStrand.layer.borderColor = UIColor.cyan.cgColor
-        }
-    }
+    //TODO:
+//    func changeCurrent(strand: strand){
+//        if handSelected{
+//            if currentlySelectedStrand != nil{
+//                currentlySelectedStrand.layer.borderWidth = 0
+//            }
+//            currentlySelectedStrand = strand
+//            currentlySelectedStrand.layer.borderWidth = 2
+//            currentlySelectedStrand.layer.borderColor = UIColor.cyan.cgColor
+//        }
+//    }
 }

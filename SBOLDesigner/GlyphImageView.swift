@@ -9,8 +9,8 @@
 import UIKit
 
 class GlyphImageView: UIImageView {
-    var parentStrand: strand?
-    
+    var parentStrand: Strand?
+    var index: Int?
     override init(image: UIImage?) {
         super.init(image: image)
     }
@@ -23,8 +23,9 @@ class GlyphImageView: UIImageView {
         super.init(coder: aDecoder)
     }
     
-    init(strand: strand?, image: UIImage?) {
+    init(strand: Strand?, image: UIImage?) {
         self.parentStrand = strand
+        index = 0
         super.init(image: image)
     }
     
