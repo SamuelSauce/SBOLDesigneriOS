@@ -91,6 +91,9 @@ class Strand{
     }
     
     func deleteStrand(){
+        for part in parts{
+            part.removeFromSuperview()
+        }
         strandBorder.path = nil
         backBone.path = nil
     }

@@ -147,7 +147,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SBOLSketchPad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-Ne-xbv">
-                                <rect key="frame" x="583.5" y="20" width="199" height="33.5"/>
+                                <rect key="frame" x="583.5" y="20" width="199" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -231,6 +231,20 @@
                                     <action selector="purpleClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="65O-yI-xRc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9j-eN-8Fn">
+                                <rect key="frame" x="1303" y="359" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="YYV-c5-C40"/>
+                                    <constraint firstAttribute="height" constant="40" id="bg3-Dk-0KT"/>
+                                </constraints>
+                                <state key="normal" title="DEL">
+                                    <color key="titleColor" red="1" green="0.058155415100000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteStrand:" destination="MgS-Xo-92S" eventType="touchUpInside" id="qAq-ZP-0oY"/>
+                                    <action selector="redClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="AJu-e8-LXJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -242,9 +256,11 @@
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="TJG-IX-NbL" secondAttribute="trailing" constant="20" id="GVc-aG-EC8"/>
                             <constraint firstItem="hoq-9b-wHB" firstAttribute="top" secondItem="WJm-Cf-WDZ" secondAttribute="bottom" constant="14" id="HnA-rb-76K"/>
                             <constraint firstItem="TJG-IX-NbL" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" id="HqX-Kk-mE6"/>
+                            <constraint firstItem="v9j-eN-8Fn" firstAttribute="top" secondItem="JpY-fP-EWd" secondAttribute="top" id="J76-i4-uT1"/>
                             <constraint firstItem="3D2-D2-fpx" firstAttribute="top" secondItem="uLz-7P-8dZ" secondAttribute="bottom" constant="8" id="LSp-ub-MCx"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="JpY-fP-EWd" secondAttribute="trailing" constant="23" id="M0J-Fy-0gm"/>
                             <constraint firstItem="UYq-U9-gyV" firstAttribute="top" secondItem="TJG-IX-NbL" secondAttribute="bottom" constant="8" id="TX1-pS-bm0"/>
+                            <constraint firstItem="v9j-eN-8Fn" firstAttribute="baseline" secondItem="JpY-fP-EWd" secondAttribute="baseline" id="Uvd-QT-bUl"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="Rz9-tE-vfQ" secondAttribute="trailing" constant="23" id="W8O-UU-fOJ"/>
                             <constraint firstItem="see-Ne-xbv" firstAttribute="centerX" secondItem="MgS-Xo-92S" secondAttribute="centerX" id="Yy9-er-jg9"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="UYq-U9-gyV" secondAttribute="trailing" constant="18" id="ass-AZ-qCN"/>
@@ -255,6 +271,7 @@
                             <constraint firstItem="Rz9-tE-vfQ" firstAttribute="top" secondItem="sDA-VV-VPB" secondAttribute="bottom" constant="14" id="cmJ-6h-dbH"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="q4s-aF-XlT" secondAttribute="trailing" constant="20" id="e7N-8g-ihe"/>
                             <constraint firstAttribute="bottom" secondItem="nk5-UZ-0za" secondAttribute="bottom" id="hY4-Cd-FSU"/>
+                            <constraint firstItem="v9j-eN-8Fn" firstAttribute="leading" secondItem="JpY-fP-EWd" secondAttribute="leading" id="jAW-wV-VmG"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="ZLS-wX-DzC" secondAttribute="trailing" constant="23" id="lYs-5d-7DU"/>
                             <constraint firstItem="sDA-VV-VPB" firstAttribute="top" secondItem="JpY-fP-EWd" secondAttribute="bottom" constant="14" id="nmm-ZQ-KQI"/>
                             <constraint firstItem="nk5-UZ-0za" firstAttribute="leading" secondItem="MgS-Xo-92S" secondAttribute="leading" id="p3U-Jg-E9C"/>
@@ -263,11 +280,13 @@
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="uLz-7P-8dZ" secondAttribute="trailing" constant="18" id="siP-mZ-Oyo"/>
                             <constraint firstItem="see-Ne-xbv" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" id="uhx-FK-Uqw"/>
                             <constraint firstItem="q4s-aF-XlT" firstAttribute="top" secondItem="cf4-l2-SOF" secondAttribute="bottom" constant="8" id="vsq-Oh-n65"/>
+                            <constraint firstItem="v9j-eN-8Fn" firstAttribute="firstBaseline" secondItem="JpY-fP-EWd" secondAttribute="firstBaseline" id="yrn-2V-0pU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B60-i0-RSX"/>
                         <connections>
                             <outlet property="blue" destination="Rz9-tE-vfQ" id="T8x-KC-kGs"/>
                             <outlet property="clearButton" destination="sCp-9F-Z0m" id="TZK-8A-uYO"/>
+                            <outlet property="deleteStrandButton" destination="v9j-eN-8Fn" id="Ycb-ng-occ"/>
                             <outlet property="eraserButton" destination="UYq-U9-gyV" id="p5W-fR-IQU"/>
                             <outlet property="green" destination="WJm-Cf-WDZ" id="tQV-RD-COs"/>
                             <outlet property="handButton" destination="3D2-D2-fpx" id="rVN-pq-S8G"/>

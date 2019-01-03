@@ -19,12 +19,16 @@ class DrawView: UIView{
     var layersToRemove = 0
     var pencilSelected: Bool!
     var drawingStrand: Bool!
-    var strandStarted: Bool!
     var handSelected: Bool!
     var textSelected: Bool!
     var undoStack: [Int]!
     var currentlySelectedStrand: Strand!
     var strands: [Strand]!
+    @IBOutlet weak var deleteStrandButton: UIButton!
+    @IBAction func deleteStrand(_ sender: Any) {
+        currentlySelectedStrand.deleteStrand()
+    }
+    
     @IBOutlet weak var red: UIButton!
     @IBOutlet weak var yellow: UIButton!
     @IBOutlet weak var blue: UIButton!
@@ -71,6 +75,11 @@ class DrawView: UIView{
         blue.isHidden = true
         green.isHidden = true
         purple.isHidden = true
+        red.isEnabled = false
+        yellow.isEnabled = false
+        blue.isEnabled = false
+        green.isEnabled = false
+        purple.isEnabled = false
     }
     
     private func turnOnColors(){
@@ -79,6 +88,11 @@ class DrawView: UIView{
         blue.isHidden = false
         green.isHidden = false
         purple.isHidden = false
+        red.isEnabled = true
+        yellow.isEnabled = true
+        blue.isEnabled = true
+        green.isEnabled = true
+        purple.isEnabled = true
     }
 
     private func setupColorButtons(){
@@ -115,12 +129,12 @@ class DrawView: UIView{
         lineColor = UIColor.black
         lineWidth = 5
         drawingStrand = false
-        strandStarted = false
         pencilSelected = false
         handSelected = false
         textSelected = true
         turnOffColors()
-        turnOffStrands()
+        deleteStrandButton.isEnabled = false
+        deleteStrandButton.isHidden = true
     }
     
     @IBOutlet weak var clearButton: UIButton!
@@ -138,7 +152,8 @@ class DrawView: UIView{
         pencilSelected = false
         handSelected = false
         turnOffColors()
-        turnOffStrands()
+        deleteStrandButton.isEnabled = false
+        deleteStrandButton.isHidden = true
     }
     @IBOutlet weak var handButton: UIButton!
     @IBAction func handClicked(_ sender: Any) {
@@ -149,11 +164,11 @@ class DrawView: UIView{
         textButton.setImage(UIImage(named: "text"), for: .normal)
         textSelected = false
         drawingStrand = false
-        strandStarted = false
         pencilSelected = false
         turnOffColors()
         handSelected = true
-        turnOnStrands()
+        deleteStrandButton.isEnabled = false
+        deleteStrandButton.isHidden = true
     }
     
     @IBOutlet weak var pencilButton: UIButton!
@@ -167,12 +182,12 @@ class DrawView: UIView{
         lineColor = UIColor.black
         lineWidth = 5
         drawingStrand = false
-        strandStarted = false
         handSelected = false
         pencilSelected = true
         turnOnColors()
         unHighlight()
-        turnOffStrands()
+        deleteStrandButton.isEnabled = false
+        deleteStrandButton.isHidden = true
     }
     
     @IBOutlet weak var undoButton: UIButton!
@@ -227,31 +242,20 @@ class DrawView: UIView{
         handSelected = false
         pencilSelected = false
         turnOffColors()
-        turnOffStrands()
+        deleteStrandButton.isEnabled = true
+        deleteStrandButton.isHidden = false
+        bringSubviewToFront(deleteStrandButton)
+        
     }
     
     @IBAction func clearClicked(_ sender: Any) {
         clearCanvas()
     }
     
-    func turnOffStrands(){
-//        if strands != nil{
-//            for strand in strands!{
-//                //Strand.isUserInteractionEnabled = false
-//            }
-//        }
-    }
-    
-    func turnOnStrands(){
-//        if strands != nil{
-//            for strand in strands!{
-//                //strand.isUserInteractionEnabled = true
-//            }
-//        }
-    }
-    
     func setupView(){
         roundButton(roundness: 8, button: clearButton)
+        self.deleteStrandButton.isEnabled = false
+        self.deleteStrandButton.isHidden = true
         self.clearButton.backgroundColor = UIColor.red
         lineColor = UIColor.black
         lineWidth = 5
@@ -272,11 +276,11 @@ class DrawView: UIView{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         startingPoint = touch?.location(in: self)
-        if handSelected == true && currentlySelectedStrand != nil{
-            //TODO:
-            //currentlySelectedStrand.layer.borderWidth = 0
-            self.currentlySelectedStrand = nil
-        }else if textSelected == true{
+        if currentlySelectedStrand != nil{
+            currentlySelectedStrand.enabled(isOn: false)
+            currentlySelectedStrand = nil
+        }
+        if textSelected == true{
             let textField = UITextField()
             textField.frame = CGRect(x: startingPoint.x, y: startingPoint.y - 10/2, width: 200, height: 30)
             self.addSubview(textField)
@@ -297,36 +301,28 @@ class DrawView: UIView{
                 let strand = Strand(superView: self, x: startingPoint.x, y: startingPoint.y - 128/2)
                 self.currentlySelectedStrand = strand
                 self.strands.append(strand)
-                strandStarted = false
                 undoStack.append(0)
             }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if handSelected == false && drawingStrand == false && textSelected == false{
+        if pencilSelected{
             let touch = touches.first
             touchPoint = touch?.location(in: self)
-            
             path = UIBezierPath()
             path.move(to: startingPoint)
             path.addLine(to: touchPoint)
-            /*The only instance where we want the starting point to reset is if we
-             aren't drawing a dna strand. Otherwise the canvas will not show a live update of
-             DNA strand path.*/
-            if drawingStrand == false {
-                undoStack.append(1)
-                startingPoint = touchPoint
-            }
+            undoStack.append(1)
+            startingPoint = touchPoint
             drawShapeLayer()
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if currentlySelectedStrand != nil{
-            // currentlySelectedStrand.layer.borderWidth = 0
-        }
+
     }
+    
     func drawShapeLayer(){
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
@@ -337,7 +333,6 @@ class DrawView: UIView{
         layersToRemove += 1
         self.setNeedsDisplay()
     }
-    
     func clearCanvas(){
         for view in self.subviews{
             if let imageView = view as? UIImageView{
@@ -360,7 +355,6 @@ class DrawView: UIView{
         undoStack.append(-1)
         self.setNeedsDisplay()
     }
-    
     func setCurrentGlyph(image: UIImage){
         self.currentGlyph = image
         if self.currentlySelectedStrand != nil{
@@ -373,7 +367,6 @@ class DrawView: UIView{
             }
         }
     }
-    
     func pop() -> Int{
         if undoStack.count > 1{
             return undoStack.removeLast()
@@ -381,15 +374,4 @@ class DrawView: UIView{
             return -1
         }
     }
-    //TODO:
-//    func changeCurrent(strand: strand){
-//        if handSelected{
-//            if currentlySelectedStrand != nil{
-//                currentlySelectedStrand.layer.borderWidth = 0
-//            }
-//            currentlySelectedStrand = strand
-//            currentlySelectedStrand.layer.borderWidth = 2
-//            currentlySelectedStrand.layer.borderColor = UIColor.cyan.cgColor
-//        }
-//    }
 }

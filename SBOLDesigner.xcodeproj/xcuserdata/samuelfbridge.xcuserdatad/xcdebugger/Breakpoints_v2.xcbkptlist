@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SBOLDesigner/Strand.swift"
-            timestampString = "568165952.950753"
+            timestampString = "568178006.198952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SBOLDesigner/DrawView.swift"
-            timestampString = "568165952.950829"
+            timestampString = "568178006.1991709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "undoButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SBOLDesigner/DrawView.swift"
-            timestampString = "568165952.951252"
+            timestampString = "568178006.200039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "undoButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
