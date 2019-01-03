@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,16 +121,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="79" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-fW-s71">
-                                                    <rect key="frame" x="15" y="9" width="49" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-fW-s71">
+                                                    <rect key="frame" x="15" y="2" width="49" height="73"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="IgZ-fW-s71" secondAttribute="height" multiplier="49:73" id="lhM-XR-YqV"/>
+                                                        <constraint firstAttribute="height" constant="73" id="mbz-hL-vOG"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="leading" secondItem="bBa-g5-8R9" secondAttribute="leadingMargin" constant="7" id="GQS-u2-Myl"/>
-                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="centerY" secondItem="bBa-g5-8R9" secondAttribute="centerY" id="Gda-rK-tqM"/>
-                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="centerX" secondItem="bBa-g5-8R9" secondAttribute="centerX" id="XXt-hk-ozh"/>
-                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="top" secondItem="bBa-g5-8R9" secondAttribute="topMargin" constant="1" id="axT-CS-D8K"/>
+                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="centerX" secondItem="bBa-g5-8R9" secondAttribute="centerX" id="9mL-nt-Zhl"/>
+                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="top" secondItem="bBa-g5-8R9" secondAttribute="top" constant="2" id="gTL-yo-SK1"/>
+                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="centerY" secondItem="bBa-g5-8R9" secondAttribute="centerY" id="rS7-HM-b8A"/>
+                                            <constraint firstItem="IgZ-fW-s71" firstAttribute="leading" secondItem="bBa-g5-8R9" secondAttribute="leading" constant="15" id="vtO-je-cyA"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imgImage" destination="IgZ-fW-s71" id="5gp-Vz-k1C"/>
