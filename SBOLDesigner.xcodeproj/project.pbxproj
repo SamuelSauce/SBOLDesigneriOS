@@ -14,6 +14,7 @@
 		682C2603218104CD00DAB50F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682C2601218104CD00DAB50F /* Main.storyboard */; };
 		682C2605218104CF00DAB50F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682C2604218104CF00DAB50F /* Assets.xcassets */; };
 		682C2608218104CF00DAB50F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682C2606218104CF00DAB50F /* LaunchScreen.storyboard */; };
+		686B0E2321E3F08C0027B5FC /* InteractionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B0E2221E3F08C0027B5FC /* InteractionImageView.swift */; };
 		6888DDB921B1DD900032A774 /* GlyphImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888DDB821B1DD900032A774 /* GlyphImageView.swift */; };
 		68A528A321B5EACB00028482 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A528A221B5EACB00028482 /* ImageCollectionViewCell.swift */; };
 		68FB64A321A620F100FC56B2 /* Strand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FB64A221A620F100FC56B2 /* Strand.swift */; };
@@ -29,6 +30,7 @@
 		682C2604218104CF00DAB50F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		682C2607218104CF00DAB50F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		682C2609218104CF00DAB50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		686B0E2221E3F08C0027B5FC /* InteractionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionImageView.swift; sourceTree = "<group>"; };
 		6888DDB821B1DD900032A774 /* GlyphImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphImageView.swift; sourceTree = "<group>"; };
 		68A528A221B5EACB00028482 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		68FB64A221A620F100FC56B2 /* Strand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strand.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				68FB64A221A620F100FC56B2 /* Strand.swift */,
 				6888DDB821B1DD900032A774 /* GlyphImageView.swift */,
 				68A528A221B5EACB00028482 /* ImageCollectionViewCell.swift */,
+				686B0E2221E3F08C0027B5FC /* InteractionImageView.swift */,
 				682C2601218104CD00DAB50F /* Main.storyboard */,
 				682C2604218104CF00DAB50F /* Assets.xcassets */,
 				682C2606218104CF00DAB50F /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				680163B92190CBEF008C624D /* DrawView.swift in Sources */,
 				68A528A321B5EACB00028482 /* ImageCollectionViewCell.swift in Sources */,
 				682C2600218104CD00DAB50F /* LogoPage.swift in Sources */,
+				686B0E2321E3F08C0027B5FC /* InteractionImageView.swift in Sources */,
 				68FB64A321A620F100FC56B2 /* Strand.swift in Sources */,
 				6888DDB921B1DD900032A774 /* GlyphImageView.swift in Sources */,
 				68092C4E2182B1FD00DAEA85 /* CanvasViewController.swift in Sources */,

@@ -24,6 +24,8 @@ class DrawView: UIView{
     var textSelected: Bool!
     var undoStack: [Int]!
     var currentlySelectedStrand: Strand!
+    var currentlySelectedPart: GlyphImageView!
+    var interaction = 0
     var strands: [Strand]!
     @IBOutlet weak var deleteStrandButton: UIButton!
     @IBAction func deleteStrand(_ sender: Any) {
@@ -176,8 +178,18 @@ class DrawView: UIView{
         deleteStrandButton.isEnabled = false
         deleteStrandButton.isHidden = true
         glyphsEnabled(enabled: true)
-        currentlySelectedStrand.enabled(isOn: false)
-        currentlySelectedStrand = nil
+        if currentlySelectedStrand != nil{
+            currentlySelectedStrand.enabled(isOn: false)
+            currentlySelectedStrand = nil
+        }
+    }
+    
+    @IBOutlet weak var repressButton: UIButton!
+    @IBAction func repress(_ sender: Any) {
+        interaction = 1
+        if currentlySelectedPart != nil{
+            currentlySelectedPart.layer.borderColor = UIColor.red.cgColor
+        }
     }
     
     @IBOutlet weak var pencilButton: UIButton!
@@ -237,6 +249,10 @@ class DrawView: UIView{
                 self.setNeedsDisplay()
                 return
             }
+        }
+        //Case if deleting an interaction.
+        else if popped == 4{
+            //TODO: Fill in popping interaction. This should remove the interaction UIImage and line
         }
     }
     @IBOutlet weak var strandButton: UIButton!
@@ -400,5 +416,78 @@ class DrawView: UIView{
                 part.enabled(enabled: enabled)
             }
         }
+        if enabled{
+            repressButton.isHidden = false
+            repressButton.isEnabled = true
+        }else{
+            repressButton.isHidden = true
+            repressButton.isEnabled = false
+        }
+    }
+    
+    func drawInteraction(interaction: Int, from: GlyphImageView, to: GlyphImageView){
+        var interactionImage = InteractionImageView(image: nil)
+        var interactionColor = UIColor.clear.cgColor
+        switch interaction {
+            case 0: //No interaction
+                return
+            case 1: //Repress
+                interactionImage = InteractionImageView(image: UIImage(named: "inhibition-specification"))
+                interactionImage.frame = CGRect(x: to.frame.midX - repressButton.frame.width/2, y: to.frame.minY - repressButton.frame.height, width: repressButton.frame.width, height: repressButton.frame.height)
+                interactionImage.setImageColor(color: UIColor.red)
+                interactionColor = UIColor.red.cgColor
+                self.addSubview(interactionImage)
+                break
+            case 2:
+                //TODO
+                break
+            case 3:
+                //TODO
+                break
+            default:
+                //TODO
+                break
+        }
+        
+        let linewidth = 5 as CGFloat
+        
+        //Setting up path 1
+        let firstPath = UIBezierPath()
+        firstPath.move(to: CGPoint(x: interactionImage.frame.midX - 0.5, y: interactionImage.frame.midY))
+        firstPath.addLine(to: CGPoint(x: interactionImage.frame.midX,y: from.frame.minY - from.frame.height/2))
+        let firstLayer = CAShapeLayer()
+        firstLayer.path = firstPath.cgPath
+        firstLayer.strokeColor = interactionColor
+        firstLayer.lineWidth = linewidth
+        firstLayer.fillColor = UIColor.clear.cgColor
+        
+        //Setting up path 2
+        let secondPath = UIBezierPath()
+        secondPath.move(to: CGPoint(x: interactionImage.frame.midX,y: from.frame.minY - from.frame.height/2))
+        secondPath.addLine(to: CGPoint(x: from.frame.midX,y: from.frame.minY - from.frame.height/2))
+        let secondLayer = CAShapeLayer()
+        secondLayer.path = secondPath.cgPath
+        secondLayer.strokeColor = interactionColor
+        secondLayer.lineWidth = linewidth
+        secondLayer.fillColor = UIColor.clear.cgColor
+        
+        //Setting up path 3
+        let thirdPath = UIBezierPath()
+        thirdPath.move(to: CGPoint(x: from.frame.midX,y: from.frame.minY - from.frame.height/2))
+        thirdPath.addLine(to: CGPoint(x: from.frame.midX,y: from.frame.minY + from.frame.height/4))
+        let thirdLayer = CAShapeLayer()
+        thirdLayer.path = thirdPath.cgPath
+        thirdLayer.strokeColor = interactionColor
+        thirdLayer.lineWidth = linewidth
+        thirdLayer.fillColor = UIColor.clear.cgColor
+        
+        //Adding views
+        self.layer.addSublayer(firstLayer)
+        self.layer.addSublayer(secondLayer)
+        self.layer.addSublayer(thirdLayer)
+        self.layersToRemove += 3
+        self.setNeedsDisplay()
+        
+        self.interaction = 0
     }
 }

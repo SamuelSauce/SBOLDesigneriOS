@@ -184,6 +184,20 @@
                                     <action selector="redClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="ODe-ex-hd7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9j-eN-8Fn">
+                                <rect key="frame" x="1303" y="359" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="YYV-c5-C40"/>
+                                    <constraint firstAttribute="height" constant="40" id="bg3-Dk-0KT"/>
+                                </constraints>
+                                <state key="normal" title="DEL">
+                                    <color key="titleColor" red="1" green="0.058155415100000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteStrand:" destination="MgS-Xo-92S" eventType="touchUpInside" id="qAq-ZP-0oY"/>
+                                    <action selector="redClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="AJu-e8-LXJ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDA-VV-VPB">
                                 <rect key="frame" x="1303" y="413" width="40" height="40"/>
                                 <constraints>
@@ -231,24 +245,24 @@
                                     <action selector="purpleClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="65O-yI-xRc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9j-eN-8Fn">
-                                <rect key="frame" x="1303" y="359" width="40" height="40"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmq-YM-0Ic">
+                                <rect key="frame" x="1243" y="200" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="YYV-c5-C40"/>
-                                    <constraint firstAttribute="height" constant="40" id="bg3-Dk-0KT"/>
+                                    <constraint firstAttribute="width" secondItem="Mmq-YM-0Ic" secondAttribute="height" multiplier="1:1" id="MFk-JY-MP1"/>
+                                    <constraint firstAttribute="height" constant="40" id="NO7-es-PFV"/>
+                                    <constraint firstAttribute="width" constant="40" id="lWO-cg-bnM"/>
                                 </constraints>
-                                <state key="normal" title="DEL">
-                                    <color key="titleColor" red="1" green="0.058155415100000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
+                                <state key="normal" title="repress" image="inhibition-specification"/>
                                 <connections>
-                                    <action selector="deleteStrand:" destination="MgS-Xo-92S" eventType="touchUpInside" id="qAq-ZP-0oY"/>
-                                    <action selector="redClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="AJu-e8-LXJ"/>
+                                    <action selector="repress:" destination="MgS-Xo-92S" eventType="touchUpInside" id="FnA-SM-mU4"/>
+                                    <action selector="yellowClicked:" destination="MgS-Xo-92S" eventType="touchUpInside" id="9NU-58-Pxg"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="3D2-D2-fpx" secondAttribute="trailing" constant="18" id="4JO-q7-zPe"/>
+                            <constraint firstItem="Mmq-YM-0Ic" firstAttribute="top" secondItem="B60-i0-RSX" secondAttribute="top" constant="180" id="4NL-1M-4oB"/>
                             <constraint firstItem="JpY-fP-EWd" firstAttribute="top" secondItem="q4s-aF-XlT" secondAttribute="bottom" constant="8" id="4QV-D3-tps"/>
                             <constraint firstItem="cf4-l2-SOF" firstAttribute="top" secondItem="3D2-D2-fpx" secondAttribute="bottom" constant="8" id="6hg-ak-kL2"/>
                             <constraint firstItem="ZLS-wX-DzC" firstAttribute="top" secondItem="WJm-Cf-WDZ" secondAttribute="bottom" constant="14" id="BXV-T8-le1"/>
@@ -259,6 +273,7 @@
                             <constraint firstItem="v9j-eN-8Fn" firstAttribute="top" secondItem="JpY-fP-EWd" secondAttribute="top" id="J76-i4-uT1"/>
                             <constraint firstItem="3D2-D2-fpx" firstAttribute="top" secondItem="uLz-7P-8dZ" secondAttribute="bottom" constant="8" id="LSp-ub-MCx"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="JpY-fP-EWd" secondAttribute="trailing" constant="23" id="M0J-Fy-0gm"/>
+                            <constraint firstItem="3D2-D2-fpx" firstAttribute="leading" secondItem="Mmq-YM-0Ic" secondAttribute="trailing" constant="8" id="RWF-9C-jcN"/>
                             <constraint firstItem="UYq-U9-gyV" firstAttribute="top" secondItem="TJG-IX-NbL" secondAttribute="bottom" constant="8" id="TX1-pS-bm0"/>
                             <constraint firstItem="v9j-eN-8Fn" firstAttribute="baseline" secondItem="JpY-fP-EWd" secondAttribute="baseline" id="Uvd-QT-bUl"/>
                             <constraint firstItem="B60-i0-RSX" firstAttribute="trailing" secondItem="Rz9-tE-vfQ" secondAttribute="trailing" constant="23" id="W8O-UU-fOJ"/>
@@ -293,6 +308,7 @@
                             <outlet property="pencilButton" destination="q4s-aF-XlT" id="Qz3-Z9-Uvh"/>
                             <outlet property="purple" destination="hoq-9b-wHB" id="MuJ-ac-IhB"/>
                             <outlet property="red" destination="JpY-fP-EWd" id="UOa-cM-J5t"/>
+                            <outlet property="repressButton" destination="Mmq-YM-0Ic" id="Had-jZ-uWN"/>
                             <outlet property="strandButton" destination="uLz-7P-8dZ" id="Lhl-1O-OmM"/>
                             <outlet property="textButton" destination="cf4-l2-SOF" id="QVR-Yi-UeO"/>
                             <outlet property="undoButton" destination="TJG-IX-NbL" id="FAb-A0-Nxy"/>
@@ -312,6 +328,7 @@
         <image name="dna" width="36" height="59"/>
         <image name="eraser" width="36" height="35"/>
         <image name="hand" width="72" height="72"/>
+        <image name="inhibition-specification" width="27" height="90"/>
         <image name="pencil" width="43" height="43"/>
         <image name="text" width="48" height="48"/>
         <image name="undo" width="512" height="512"/>

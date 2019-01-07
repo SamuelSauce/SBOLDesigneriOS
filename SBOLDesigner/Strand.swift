@@ -12,11 +12,11 @@ import UIKit
 class Strand{
     
     private var nextSlot: CGPoint!
-    private var superView: DrawView!
     private let height: CGFloat = 128
     private var width: CGFloat!
     private let strandBorder: CAShapeLayer
     private let backBone: CAShapeLayer
+    var superView: DrawView!
     var parts: [GlyphImageView]!
     var frame: CGRect!
     var minX: CGFloat!
