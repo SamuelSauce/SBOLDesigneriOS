@@ -19,6 +19,7 @@ class DrawView: UIView{
     var layersToRemove = 0
     var pencilSelected: Bool!
     var drawingStrand: Bool!
+    var erasing: Bool!
     var handSelected: Bool!
     var textSelected: Bool!
     var undoStack: [Int]!
@@ -132,9 +133,11 @@ class DrawView: UIView{
         pencilSelected = false
         handSelected = false
         textSelected = true
+        erasing = false
         turnOffColors()
         deleteStrandButton.isEnabled = false
         deleteStrandButton.isHidden = true
+        glyphsEnabled(enabled: false)
     }
     
     @IBOutlet weak var clearButton: UIButton!
@@ -151,9 +154,11 @@ class DrawView: UIView{
         drawingStrand = false
         pencilSelected = false
         handSelected = false
+        erasing = true
         turnOffColors()
         deleteStrandButton.isEnabled = false
         deleteStrandButton.isHidden = true
+        glyphsEnabled(enabled: false)
     }
     @IBOutlet weak var handButton: UIButton!
     @IBAction func handClicked(_ sender: Any) {
@@ -165,10 +170,14 @@ class DrawView: UIView{
         textSelected = false
         drawingStrand = false
         pencilSelected = false
+        erasing = false
         turnOffColors()
         handSelected = true
         deleteStrandButton.isEnabled = false
         deleteStrandButton.isHidden = true
+        glyphsEnabled(enabled: true)
+        currentlySelectedStrand.enabled(isOn: false)
+        currentlySelectedStrand = nil
     }
     
     @IBOutlet weak var pencilButton: UIButton!
@@ -184,10 +193,12 @@ class DrawView: UIView{
         drawingStrand = false
         handSelected = false
         pencilSelected = true
+        erasing = false
         turnOnColors()
         unHighlight()
         deleteStrandButton.isEnabled = false
         deleteStrandButton.isHidden = true
+        glyphsEnabled(enabled: false)
     }
     
     @IBOutlet weak var undoButton: UIButton!
@@ -241,11 +252,12 @@ class DrawView: UIView{
         drawingStrand = true
         handSelected = false
         pencilSelected = false
+        erasing = false
         turnOffColors()
         deleteStrandButton.isEnabled = true
         deleteStrandButton.isHidden = false
         bringSubviewToFront(deleteStrandButton)
-        
+        glyphsEnabled(enabled: false)
     }
     
     @IBAction func clearClicked(_ sender: Any) {
@@ -265,7 +277,9 @@ class DrawView: UIView{
         drawingStrand = false
         handSelected = false
         pencilSelected = true
+        erasing = false
         setupColorButtons()
+        glyphsEnabled(enabled: false)
     }
     
     override func layoutSubviews() {
@@ -307,7 +321,7 @@ class DrawView: UIView{
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if pencilSelected{
+        if pencilSelected || erasing{
             let touch = touches.first
             touchPoint = touch?.location(in: self)
             path = UIBezierPath()
@@ -320,7 +334,12 @@ class DrawView: UIView{
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        for strand in strands{
+            for part in strand.parts{
+                bringSubviewToFront(part)
+            }
+            strand.updated()
+        }
     }
     
     func drawShapeLayer(){
@@ -372,6 +391,14 @@ class DrawView: UIView{
             return undoStack.removeLast()
         }else{
             return -1
+        }
+    }
+    
+    func glyphsEnabled(enabled: Bool){
+        for strand in strands{
+            for part in strand.parts{
+                part.enabled(enabled: enabled)
+            }
         }
     }
 }

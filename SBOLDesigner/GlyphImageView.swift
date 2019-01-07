@@ -27,11 +27,23 @@ class GlyphImageView: UIImageView {
         self.parentStrand = strand
         index = 0
         super.init(image: image)
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 8.0
+        self.layer.borderWidth = 2.0
+        self.layer.borderColor = UIColor.clear.cgColor
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.clipsToBounds = true
+    }
+    
+    func enabled(enabled: Bool){
+        if enabled{
+            self.layer.borderColor = UIColor.green.cgColor
+        }else{
+            self.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 
 }

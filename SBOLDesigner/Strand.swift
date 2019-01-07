@@ -106,7 +106,7 @@ class Strand{
         }
     }
     
-    private func updated() -> Void {
+    func updated() -> Void {
         //Updating border
         self.frame = CGRect(x: minX, y: minY, width: width, height: self.height)
         let border = UIBezierPath.init(rect: frame)
