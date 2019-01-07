@@ -252,7 +252,19 @@ class DrawView: UIView{
         }
         //Case if deleting an interaction.
         else if popped == 4{
-            //TODO: Fill in popping interaction. This should remove the interaction UIImage and line
+            if let imageView = self.subviews.last as? InteractionImageView{
+                imageView.removeFromSuperview()
+                var count = 3
+                if(layersToRemove > 0){
+                    while count > 0{
+                        self.layer.sublayers?.remove(at: (self.layer.sublayers?.count)! - 1)
+                        count -= 1
+                        layersToRemove -= 1
+                    }
+                }
+                self.setNeedsDisplay()
+                return
+            }
         }
     }
     @IBOutlet weak var strandButton: UIButton!
@@ -436,7 +448,6 @@ class DrawView: UIView{
                 interactionImage.frame = CGRect(x: to.frame.midX - repressButton.frame.width/2, y: to.frame.minY - repressButton.frame.height, width: repressButton.frame.width, height: repressButton.frame.height)
                 interactionImage.setImageColor(color: UIColor.red)
                 interactionColor = UIColor.red.cgColor
-                self.addSubview(interactionImage)
                 break
             case 2:
                 //TODO
@@ -485,7 +496,9 @@ class DrawView: UIView{
         self.layer.addSublayer(firstLayer)
         self.layer.addSublayer(secondLayer)
         self.layer.addSublayer(thirdLayer)
+        self.addSubview(interactionImage)
         self.layersToRemove += 3
+        undoStack.append(4)
         self.setNeedsDisplay()
         
         self.interaction = 0
